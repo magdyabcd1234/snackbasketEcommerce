@@ -1,16 +1,18 @@
-"use client";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import blogData from "@/app/JsonData/Blogs.json";
 
 
-export default function BlogDetails() {
-    const searchParams = useSearchParams();
-    const id = searchParams.get("id");
+type BlogDetailsPageProps = {
+    searchParams: { [key: string]: string | undefined }
+  }
+  
+  export default function BlogDetailsPage({ searchParams }: BlogDetailsPageProps) {
+    const id = searchParams.id; // الآن الخط الأحمر يروح
     const blog = blogData.find((b) => b.id.toString() === id)
-
-    if(!blog) return <div>No Blog Found</div>
+  
+    if (!blog) return <div>No Blog Found</div>
+  
   return (
     <>
      <div className="px-[8%] lg:px-[12%] bg-[#E6F9EF] py-5">

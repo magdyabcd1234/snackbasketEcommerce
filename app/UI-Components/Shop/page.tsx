@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+
 
 
 import Arrivals from "@/app/JsonData/Arrivals.json";
@@ -13,9 +13,13 @@ import ShortProducts from "@/app/JsonData/ShortProducts.json";
 import ProductDetails from "./ProductDetails/ProductDetails";
 import Products from "./Products/Products";
 
+type ShopPageProps = {
+  searchParams: { [key: string]: string | undefined }
+}
 
-
-export default function ShopPage() {
+export default function ShopPage({ searchParams }: ShopPageProps) {
+  const category = searchParams.category; // مثال لو في query param اسمه category
+  const productId = searchParams?.id; // <--- هنا
     const allProducts =[
         ...Arrivals,
         ...BestDeals,
@@ -29,8 +33,8 @@ export default function ShopPage() {
         ...(ShortProducts?.TopRated || []),
 ];
 
-const searchParams = useSearchParams();
-const productId = searchParams.get("id")
+
+
   return (
     <div className="">
         {productId ? (

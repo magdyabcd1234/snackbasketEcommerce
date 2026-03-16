@@ -1,19 +1,14 @@
 "use client";
 
-import { Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import React from "react";
+import ProductDetails from "../ProductDetails/ProductDetails";
+import products from "@/app/JsonData/Recommend.json";
 
-function BlogDetailsContent() {
-  const searchParams = useSearchParams();
-  const id = searchParams.get("id");
-
-  return <div>{id}</div>;
-}
-
-export default function BlogDetails() {
+export default function Page() {
+  // هنا بنمرر JSON كامل لـ ProductDetails
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <BlogDetailsContent />
-    </Suspense>
+    <div>
+      <ProductDetails products={products} />
+    </div>
   );
 }
